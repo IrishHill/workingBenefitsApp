@@ -7,6 +7,7 @@ var bodyParser    = require('body-parser');
 var session       = require ('express-session');
 //var router        = require ('express-router');
 var routes        = require('./routes/index');
+
 var quickbooks    = require('./routes/quickbooks');
 var intuit        = require('./routes/intuit');
 var importdata    = require('./routes/importdata');
@@ -14,6 +15,8 @@ var quickbase     = require('./routes/quickbase_route');
 var mongoose      = require('mongoose');
 var passport      = require('passport');
 var IntuitStrategy = require('passport-intuit').Strategy;
+var cors           = require('cors');
+var jsonfile        = require('jsonfile');
 
 var app = express();
 
@@ -68,16 +71,130 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'smith', resave: false, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
+app.use(cors());
 //app.use(router());
+//custom routes for the api
 
+
+//empoyees
+//app.get('/api/employees', function(req,res) {
+//    var file = './public/employee.json'
+//    jsonfile.readFile(file, function(err, obj) {
+//        console.dir(obj);
+//        res.json(obj);
+//    });
+//});
+
+app.get('/api/accounts', function(req,res) {
+    var file = './public/accounts.json'
+    jsonfile.readFile(file, function(err, obj) {
+        console.dir(obj);
+        res.json(obj);
+    });
+});
+app.get('/api/company', function(req,res) {
+    var file = './public/accounts.json'
+    jsonfile.readFile(file, function(err, obj) {
+        console.dir(obj);
+        res.json(obj);
+    });
+});
+app.get('/api/employees', function(req,res) {
+
+    res.json({
+        "Employee": [
+            {
+                name: "John Wilson",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc: "1.jpg"
+            },
+            {
+                name: "Sam Jackson",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc:"2.jpg"
+            },
+            {
+                name: "Ryan Reynolds",
+                title: "Jr Engineer",
+                hired: "10/12/16",imgSrc:"3.jpg"
+            },
+            {
+                name: "Luke Wilson",
+                title: "Jr Engineer",
+                hired: "10/12/16",imgSrc:"4.jpg"
+            },
+            {
+                name: "Frank Manja",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc:"5.jpg"
+            },
+            {
+                name: "Holy Capone",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc:"6.jpg"
+            },
+            {
+                name: "Kye Holy",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc:"7.jpg"
+            },
+            {
+                name: "Molly Capone",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc:"8.jpg"
+            },
+            {
+                name: "Reynolds Capone",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc:"9.jpg"
+            },{
+                name: "Molly Engineer",
+                title: "Jr Engineer",
+                hired: "10/12/16",
+                imgSrc:"10.jpg"
+            }
+        ]});
+
+    app.get('/api/company', function(req,res) {
+
+        res.json({
+            name: "Google",
+            location: " Mountain View",
+            federalTax: "12312323132"
+        })
+
+        );
+    //var file = './public/users.json'
+    //jsonfile.readFile(file, function(err, obj) {
+    //    console.dir(obj);
+    //    res.json(obj);
+    //});
+});
 app.use('/', routes); // default to index.js
 app.use ('/quickbooks',quickbooks);
 app.use ('/intuit', intuit);
 app.use ('/importdata', importdata);
 app.use ('/quickbase', quickbase);
 
+app.get('/test',function(req,res){
+    console.log("requestsdkvjbslbvsjhdbv");
+   res.json({test:"hoola"});
 
+});
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');

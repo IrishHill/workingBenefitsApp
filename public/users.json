@@ -1,0 +1,60 @@
+{
+  "Employee": [
+{
+ name: "John Wilson",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc: "1.jpg"
+},
+{
+ name: "Sam Jackson",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc:"2.jpg"
+},
+{
+ name: "Ryan Reynolds",
+ title: "Jr Engineer", 
+ hired: "10/12/16",imgSrc:"3.jpg"
+},
+{
+ name: "Luke Wilson",
+ title: "Jr Engineer", 
+ hired: "10/12/16",imgSrc:"4.jpg"
+},
+{
+ name: "Frank Manja",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc:"5.jpg"
+},
+{
+ name: "Holy Capone",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc:"6.jpg"
+},
+{
+ name: "Kye Holy",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc:"7.jpg"
+},
+{
+ name: "Molly Capone",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc:"8.jpg"
+},
+{
+ name: "Reynolds Capone",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc:"9.jpg"
+},{
+ name: "Molly Engineer",
+ title: "Jr Engineer", 
+ hired: "10/12/16",
+ imgSrc:"10.jpg"
+}
+]}
